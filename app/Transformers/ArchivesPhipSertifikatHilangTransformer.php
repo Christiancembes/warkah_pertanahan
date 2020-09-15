@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Transformers;
+
+use Carbon\Carbon;
+
+class ArchivesPhipSertifikatHilangTransformer extends BaseTransformer
+{
+  public function serialize($data) {
+    $data = (object)$data;
+
+    $out = array(
+      'id'                     => $data->id,
+      'sertifikatHakAtasTanah' => $data->sertifikatHakAtasTanah,
+      'fcIdentitasPemohon'     => $data->fcIdentitasPemohon,
+      'fcIdentitasPemilikHak'  => $data->fcIdentitasPemilikHak,
+      'suratPermohonan'        => $data->suratPermohonan,
+      'suratKeteranganHilang'  => $data->suratKeteranganHilang,
+      'archivesPhipId'         => $data->archivesPhipId,
+      'createdAt'              => (new Carbon($data->createdAt))->toW3CString(),
+      'updatedAt'              => (new Carbon($data->updatedAt))->toW3CString(),
+    );
+
+    return $out;
+  }
+}
